@@ -1,5 +1,7 @@
 # OpenAI crawlers IP ranges
 
+![Last Commit](https://img.shields.io/github/last-commit/FabrizioCafolla/openai-crawlers-ip-ranges/main) 
+
 Here are the complete and updated lists of OpenAI IP addresses ([Official doc](https://platform.openai.com/docs/bots/overview-of-openai-crawlers)).
 
 **Why this list?** For some time I have been receiving many requests from `user-agent` signed by OpenAI and by researching on the web I realized that I am not the only one. One way to block the bot crawl is to insert it into the `robots.txt` file but apparently this is not enough to block the page scanning.

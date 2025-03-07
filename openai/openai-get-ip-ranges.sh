@@ -46,6 +46,8 @@ main() {
   for crawl_type in "${crawl_types[@]}"; do
     update "${crawl_type}" "${_arg_enable_curl}"
   done
+
+  date > last_update.txt
 }
 
 main "$@"

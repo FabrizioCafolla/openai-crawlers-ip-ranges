@@ -1,0 +1,35 @@
+name: Update
+
+permissions:
+  id-token: write
+  contents: write
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # every Mondey at 8:00 AM UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update
+        run: |
+          git config --global user.email "${{ secrets.ACTION_EMAIL }}"
+          git config --global user.name "FabrizioCafolla"
+
+          cd ./openai
+          chmod +x ./openai-get-ip-ranges.sh
+          ./openai-get-ip-ranges.sh
+          cd -
+
+          git add .
+          git commit -m "feat: update"
+          git push
