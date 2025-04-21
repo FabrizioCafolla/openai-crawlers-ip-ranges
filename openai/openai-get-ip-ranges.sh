@@ -32,7 +32,7 @@ update() {
 }
 
 main() {
-  local _arg_enable_curl="${1:-false}"
+  local _arg_enable_curl="${1:-true}"
 
   echo "[INFO] Download OpenAI IP ranges"
 
