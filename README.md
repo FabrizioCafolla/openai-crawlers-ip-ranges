@@ -46,7 +46,7 @@ The possibilities can be of various types:
   }
   ```
 
-  **If you want to test in local env (with docker)**
+  **If you want to test in a local environment (with docker)**
 
   ```bash
   docker network create test-network
@@ -57,7 +57,7 @@ The possibilities can be of various types:
   docker inspect test-app | grep IPAddress # Get IP Address: <app_ip_address>
 
   docker exec -it test-nginx ash
-  # Now you are inside to nginx container
+  # Now you are inside the nginx container
   $ vi etc/nginx/conf.d/default.conf
   $ # ...Paste nginx configuration and add <app_ip_address> to "geo $allowedipaddr"
   $ nginx -s reload -c /etc/nginx/nginx.conf
