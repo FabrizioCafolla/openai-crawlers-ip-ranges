@@ -11,6 +11,7 @@ trap 'failure ${LINENO} "$BASH_COMMAND"' ERR
 set -o pipefail
 
 IP_RANGES_FILE="openai-ip-ranges-all.txt"
+CIDR_RANGES_FILE="openai-cidr-ranges-all.txt"
 
 update() {
   local _arg_crawl_type="${1}"
@@ -26,9 +27,15 @@ update() {
       https://openai.com/${_arg_crawl_type}
   fi
 
-  jq -r '.prefixes[].ipv4Prefix | split("/")[0]' "stable/${_arg_crawl_type}" >> $IP_RANGES_FILE
-  
-  jq -r '.prefixes[].ipv4Prefix | split("/")[0]' "stable/${_arg_crawl_type}" > "openai-ip-ranges-${_arg_crawl_type%%\.json}.txt"
+  local _bot_name="${_arg_crawl_type%%\.json}"
+
+  # Files without CIDR (IP only)
+  jq -r '.prefixes[].ipv4Prefix | split("/")[0]' "stable/${_arg_crawl_type}" >> "$IP_RANGES_FILE"
+  jq -r '.prefixes[].ipv4Prefix | split("/")[0]' "stable/${_arg_crawl_type}" > "openai-ip-ranges-${_bot_name}.txt"
+
+  # Files with CIDR notation
+  jq -r '.prefixes[].ipv4Prefix' "stable/${_arg_crawl_type}" >> "$CIDR_RANGES_FILE"
+  jq -r '.prefixes[].ipv4Prefix' "stable/${_arg_crawl_type}" > "openai-cidr-ranges-${_bot_name}.txt"
 }
 
 main() {
@@ -39,9 +46,7 @@ main() {
   # See OpenAI documentation: https://platform.openai.com/docs/bots
   crawl_types=("searchbot.json" "chatgpt-user.json" "gptbot.json")
 
-  if [ -f $IP_RANGES_FILE ] ; then
-    rm -f $IP_RANGES_FILE
-  fi
+  rm -f "$IP_RANGES_FILE" "$CIDR_RANGES_FILE"
   
   for crawl_type in "${crawl_types[@]}"; do
     update "${crawl_type}" "${_arg_enable_curl}"
