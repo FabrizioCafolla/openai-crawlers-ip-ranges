@@ -73,18 +73,22 @@ The possibilities can be of various types:
 ## All OpenAI IPs
 
 - [**List of all IPs**](openai/openai-ip-ranges-all.txt)
+- [**List of all IPs (CIDR notation)**](openai/openai-cidr-ranges-all.txt)
 
 ### ChatGPT User IP
 
 - [**IPs list**](openai/openai-ip-ranges-chatgpt-user.txt)
+- [**IPs list (CIDR notation)**](openai/openai-cidr-ranges-chatgpt-user.txt)
 - **User Agent**: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot`
 
 ### GPTBot IP
 
 - [**IPs List**](openai/openai-ip-ranges-gptbot.txt)
+- [**IPs List (CIDR notation)**](openai/openai-cidr-ranges-gptbot.txt)
 - **User Agent**: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.1; +https://openai.com/gptbot`
 
 ### SearchBot IP
 
 - [**IPs List**](openai/openai-ip-ranges-searchbot.txt)
+- [**IPs List (CIDR notation)**](openai/openai-cidr-ranges-searchbot.txt)
 - **User Agent**: `OAI-SearchBot/1.0; +https://openai.com/searchbot`
